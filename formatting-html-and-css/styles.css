@@ -1,0 +1,39 @@
+header {
+  background-color: #FF6600;
+  width: auto;
+  height: auto;
+  padding: auto;
+  margin: auto;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #F6F6EF;
+  padding: 2px;
+  margin: 5px;
+}
+
+
+
+.title {
+  font-family: "Lucida Sans Typewriter";
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+
+.slogan {
+  font-family: sans-serif;
+  font-weight: bolder;
+  color: black;
+  display: inline-block;;
+  width: 78%;
+  text-align: center;
+}
+
+img {
+  width: 40%;
+  height: auto;
+  align-self: auto;
+  margin: 5px;
+}
