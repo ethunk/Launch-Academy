@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rock, Paper, Scissors International Mortal Kombat Tournament</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+  </head>
+
+  <body>
+    <center>
+    <h1>Rock, Paper, Scissors InternationalTournament</h1>
+    <h2>Let's Get Ready To Rumble!</h2>
+    <h3>Want To Know The True History of RPS? <a href="https://www.youtube.com/watch?v=VYdZhPkwxL4" target="_blank">Click Here</a>!</h3>
+    <iframe src="//giphy.com/embed/9isHWy2r88HoA" width="280" height="260" frameBorder="1" class="giphy-embed" allowFullScreen></iframe><p>
+    <hr>
+    </center>
+    <center>
+    <div class="boxed">
+      <h3>Choose Your Hand</h3>
+      <form action="/" method="post">
+        <input type="submit" name="choice" value="Rock">
+        <input type="submit" name="choice" value="Paper">
+        <input type="submit" name="choice" value="Scissors">
+      </form>
+      <h3><%= session[:message] %></h3>
+      <table>
+        <tr>
+          <th>Player Score</th>
+          <th>Computer Score</th>
+        </tr>
+        <tr>
+          <td> <%= session[:player_score] %> </td>
+          <td> <%= session[:computer_score] %> </td>
+        </tr>
+      </table>
+      <form action="/reset" method="get">
+        <input type="submit" name="reset" value="Reset Game">
+      </form>
+      <br>
+    </div>
+    </center>
+    <br>
+  </body>
+</html>

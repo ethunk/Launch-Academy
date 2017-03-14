@@ -1,0 +1,8 @@
+body {
+  background-color: #d3d3d3;
+}
+
+.boxed {
+  border: 5px solid red ;
+  border-width: 15px;
+}
