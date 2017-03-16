@@ -1,0 +1,32 @@
+<!-- Put your News Aggregator new.erb code here -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>New York Examiner</title>
+</head>
+
+<body>
+  <center>
+  <h1>Submit Your Articles Here</h1>
+  <img src="https://image.freepik.com/free-icon/news-logo_318-38132.jpg" alt="News Logo" style="width:150px;height:128px;">
+  <div class="nav_links">
+    <h4><a href="http://localhost:4567/articles">Go Back To Articles</a></h4>
+  </div>
+  <hr size="8", color="black">
+  <br>
+  <form action="/articles" method="post">
+    <label for="title">New Article Title:</label><br>
+    <input type="text" id="title" name="title" required>
+    <br>
+    <label for="description">Article Description:</label><br>
+    <input type="text" minlength=20 id="description" name="description" required>
+    <br>
+    <label for="url">Article URL:</label><br>
+    <input type="url" pattern="https?://.+" id="url" name="url" required>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  </center>
+</body>
+</html>

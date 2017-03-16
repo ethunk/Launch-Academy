@@ -1,0 +1,45 @@
+<!-- Put your News Aggregator articles.erb code here -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>New York Examiner</title>
+</head>
+
+<body>
+  <center>
+  <h1>The New York Examiner</h1>
+  <img src="https://image.freepik.com/free-icon/news-logo_318-38132.jpg" alt="News Logo" style="width:150px;height:128px;">
+  <h2>The Most Trusted In News Aggregation</h2>
+  <hr size="8", color="black">
+  <div class="box">
+  </div>
+  </center>
+  <hr>
+  <body>
+    <center>
+    <h1>News Articles</h1>
+    <img src="https://image.freepik.com/free-icon/news-logo_318-38132.jpg" alt="News Logo" style="width:150px;height:128px;">
+    <div class="nav_links">
+      <h4><a href="http://localhost:4567/">Go Back To Home Page</a></h4>
+    </div>
+    </center>
+    <hr size="8", color="black">
+    <h2>Have an interesting story to submit?</h2>
+    <h3><a href="http://localhost:4567/articles/new">Submit A Story Here!</a></h3>
+    <hr size="8", color="black">
+    <h3>Submitted Stories</h3>
+    <ul>
+      <% @articles.each do |article| %>
+        <li>
+          <h3><%= article["title"] %></h3>
+          <h4><%= article["description"] %></h4>
+          <a href="<%= article["url"] %>"><%= article["url"] %></a>
+        </li>
+      <% end %>
+    </ul>
+    <br>
+  </body>
+  </html>
+</body>
+</html>
