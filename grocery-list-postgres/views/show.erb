@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> <%= @grocery_info[0]["name"]%> </title>
+  <link href="/app.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+  <h3><%= @grocery_info[0]["name"]%></h3>
+  <hr>
+  <% if !@grocery_info[0]["body"].nil? %>
+    <ul>
+      <% @grocery_info.each do |item| %>
+        <li>
+          <b>Comment: </b>"<%= item["body"] %>"
+          <br>
+          <b>Author: </b><%= item["author"] %>
+        </li>
+        <br>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= "No comments for this grocery item." %>
+  <% end %>
+  <hr>
+  <a href="/">Back To Grocery List</a>
+</body>
+</html>
