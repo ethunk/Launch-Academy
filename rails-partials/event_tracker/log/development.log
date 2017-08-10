@@ -1,0 +1,190 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateEvents (20170726044925)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170726044925"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-26 04:49:32.909199"], ["updated_at", "2017-07-26 04:49:32.909199"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/events" for 127.0.0.1 at 2017-07-25 21:50:18 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 2219ms (Views: 2184.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-07-26 09:51:43 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (15.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (56.2ms)
+Completed 200 OK in 303ms (Views: 224.2ms | ActiveRecord: 15.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-27 09:47:21 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/railties-5.1.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/railties-5.1.2/lib/rails/templates/rails/welcome/index.html.erb (4.0ms)
+Completed 200 OK in 19ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-07-27 09:47:37 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (70.7ms)
+Completed 500 Internal Server Error in 122ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (Missing partial events/_event, application/_event with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/teddystanowski/challenges/rails-partials/event_tracker/app/views"
+):
+    11:     </tr>
+    12:   </thead>
+    13: 
+    14: <%= render partial: "event", collection: @events %>
+    15: 
+    16: </table>
+    17: 
+  
+app/views/events/index.html.erb:14:in `_app_views_events_index_html_erb___3467251765368591446_70245122070040'
+Started GET "/events" for 127.0.0.1 at 2017-07-27 16:10:06 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (13.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (27.2ms)
+Completed 500 Internal Server Error in 63ms (ActiveRecord: 13.2ms)
+
+
+  
+ActionView::Template::Error (Missing partial events/_event, application/_event with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/teddystanowski/challenges/rails-partials/event_tracker/app/views"
+):
+    11:     </tr>
+    12:   </thead>
+    13: 
+    14: <%= render partial: "event", collection: @events %>
+    15: 
+    16: </table>
+    17: 
+  
+app/views/events/index.html.erb:14:in `_app_views_events_index_html_erb___3467251765368591446_70245144302500'
+Started GET "/events" for 127.0.0.1 at 2017-07-29 10:05:51 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (12.0ms)
+Completed 500 Internal Server Error in 77ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (Missing partial events/_event, application/_event with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/teddystanowski/challenges/rails-partials/event_tracker/app/views"
+):
+    11:     </tr>
+    12:   </thead>
+    13: 
+    14: <%= render partial: "event", collection: @events %>
+    15: 
+    16: </table>
+    17: 
+  
+app/views/events/index.html.erb:14:in `_app_views_events_index_html_erb___4313282196915525331_70125803729320'
+Started GET "/events" for 127.0.0.1 at 2017-07-29 10:14:31 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (6.7ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (Missing partial events/_event, application/_event with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/teddystanowski/challenges/rails-partials/event_tracker/app/views"
+):
+    11:     </tr>
+    12:   </thead>
+    13: 
+    14: <%= render partial: "event", collection: @events %>
+    15: 
+    16: </table>
+    17: 
+  
+app/views/events/index.html.erb:14:in `_app_views_events_index_html_erb___4313282196915525331_70125843661260'
+Started GET "/events" for 127.0.0.1 at 2017-07-29 10:26:54 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (5.4ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (Missing partial events/_event, application/_event with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/teddystanowski/challenges/rails-partials/event_tracker/app/views"
+):
+    11:     </tr>
+    12:   </thead>
+    13: 
+    14: <%= render partial: "event", collection: @events %>
+    15: 
+    16: </table>
+    17: 
+  
+app/views/events/index.html.erb:14:in `_app_views_events_index_html_erb___4313282196915525331_70125833933720'
+Started GET "/events" for 127.0.0.1 at 2017-07-29 10:27:34 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  Rendered events/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_menu_list.html.erb (0.3ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+  Rendered layouts/_sidebar.html.erb (0.4ms)
+Completed 200 OK in 373ms (Views: 370.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-07-30 13:18:00 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (15.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (19.0ms)
+  Rendered layouts/_menu_list.html.erb (0.4ms)
+  Rendered layouts/_flash.html.erb (1.8ms)
+  Rendered layouts/_sidebar.html.erb (1.3ms)
+Completed 500 Internal Server Error in 204ms (ActiveRecord: 15.2ms)
+
+
+  
+ActionView::Template::Error (Missing partial events/_event, application/_event with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/teddystanowski/challenges/rails-partials/event_tracker/app/views"
+):
+    18:     </section>
+    19:     <section id="sidebar">
+    20:       <%= render "layouts/sidebar" %>
+    21:       <%= render partial: "event", collection: @events %>
+    22:     </section>
+    23:     <footer></footer>
+    24:   </body>
+  
+app/views/layouts/application.html.erb:21:in `_app_views_layouts_application_html_erb__3797743012962369819_70125802923920'
+Started GET "/events" for 127.0.0.1 at 2017-07-30 13:18:10 -0700
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_menu_list.html.erb (0.3ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+Completed 200 OK in 26ms (Views: 23.4ms | ActiveRecord: 0.3ms)
+
+

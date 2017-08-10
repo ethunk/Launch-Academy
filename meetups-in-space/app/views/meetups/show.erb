@@ -1,0 +1,17 @@
+<h1>Welcome To <%= @meetup.name %></h1><br>
+<hr>
+
+<h2><%= @meetup.description %> </h2>
+<br>
+<h3>Our Next MeetUp In Space Will Be At The:</h3>
+<h3><%= @meetup.location %></h3>
+<br>
+<h3>The Date And Time Will Be:</h3>
+<h3><%= @meetup.date %></h3>
+<hr>
+<h3>Members</h3>
+<div>
+  <% @members.each do |member| %>
+    <% member.user.username %>
+  <% end %>
+</div>

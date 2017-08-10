@@ -1,0 +1,32 @@
+<h1>Create Your Meetup</h1>
+<hr>
+<h3>Fill Out The Form Below To Create Your Meetup</h3>
+<br>
+
+<form action="/meetups/new" method="post">
+  <div>
+    <label for="name">Name Your Meetup:</label><br>
+    <input type="text" id="name" name="name" value="name" size="35" required="required" />
+  </div>
+  <br>
+  <div>
+    <label for="description">Describe Your Meetup:</label><br>
+    <input type="text" id="description" name="description" value="description" size="45" required="required" />
+  </div>
+  <br>
+  <div>
+    <label for="date">Date Of Your Meetup:</label><br>
+    <input type="text" id="date" name="date" value="date" size="35" required="required" />
+  </div>
+  <br>
+  <div>
+    <label for="location">Location Of Your Meetup:</label><br>
+    <input type="text" id="location" name="location" value="location" size="55" required="required" />
+  </div>
+  <br>
+  <div>
+      <button type="submit">Submit</button>
+  </div>
+</form>
+<hr>
+<a href="/meetups">Back To Meetups</a>

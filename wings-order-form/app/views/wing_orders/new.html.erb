@@ -1,0 +1,19 @@
+<h1>New Wing Order</h1>
+<form class="new_wing_order" id="new_wing_order" action="/wing_orders" accept-charset="UTF-8" method="post">
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="authenticity_token" value="2PGpBg7eEvtrzp9P7+C4mGH1ieW0mg0w9c+1l1SgeK1+ra8GEg5iDkZ26nEVkjRJCkcjgmMjH5CLwdoI2d1XLA==">
+
+  <div class="row">
+    <%= render 'layouts/text_fields' %>
+
+  <%= render 'layouts/state_dropdown', :state_collection => @state_collection %>
+
+    <%= render 'layouts/quantity_select' %>
+
+    <%= render 'layouts/flavors_checkmark' %>
+  </div>
+
+  <div class="row">
+    <input type="submit" name="commit" value="Place Order">
+  </div>
+</form>

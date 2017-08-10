@@ -1,0 +1,206 @@
+  [1m[35m (33.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7796248672378347825);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateWingOrders (20151214002037)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateWingOrders < ActiveRecord::Migration[4.2] (called from load at /Users/teddystanowski/.gem/ruby/2.3.3/bin/rake:22)
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "wing_orders" ("id" serial primary key, "customer_name" character varying NOT NULL, "city" character varying NOT NULL, "state" character varying NOT NULL, "quantity" integer NOT NULL, "ranch_dressing" boolean DEFAULT 'f' NOT NULL)[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20151214002037"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFlavors (20151214003153)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateFlavors < ActiveRecord::Migration[4.2] (called from load at /Users/teddystanowski/.gem/ruby/2.3.3/bin/rake:22)
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "flavors" ("id" serial primary key, "name" character varying NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20151214003153"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrderFlavors (20151214003528)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateOrderFlavors < ActiveRecord::Migration[4.2] (called from load at /Users/teddystanowski/.gem/ruby/2.3.3/bin/rake:22)
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "order_flavors" ("id" serial primary key, "wing_order_id" integer NOT NULL, "flavor_id" integer NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20151214003528"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (30.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-07-31 01:03:46 UTC], ["updated_at", 2017-07-31 01:03:46 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7796248672378347825)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'flavors'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'order_flavors'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'wing_orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mFlavor Load (0.6ms)[0m  [1m[34mSELECT  "flavors".* FROM "flavors" WHERE "flavors"."name" = $1 LIMIT $2[0m  [["name", "BBQ"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "flavors" ("name") VALUES ($1) RETURNING "id"[0m  [["name", "BBQ"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mFlavor Load (0.3ms)[0m  [1m[34mSELECT  "flavors".* FROM "flavors" WHERE "flavors"."name" = $1 LIMIT $2[0m  [["name", "Honey BBQ"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "flavors" ("name") VALUES ($1) RETURNING "id"[0m  [["name", "Honey BBQ"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT  "flavors".* FROM "flavors" WHERE "flavors"."name" = $1 LIMIT $2[0m  [["name", "Sweet Chili"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "flavors" ("name") VALUES ($1) RETURNING "id"[0m  [["name", "Sweet Chili"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT  "flavors".* FROM "flavors" WHERE "flavors"."name" = $1 LIMIT $2[0m  [["name", "Buffalo"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "flavors" ("name") VALUES ($1) RETURNING "id"[0m  [["name", "Buffalo"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2017-07-31 17:05:37 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WingOrdersController#index as HTML
+  Rendering wing_orders/index.html.erb within layouts/application
+  [1m[36mWingOrder Load (14.3ms)[0m  [1m[34mSELECT "wing_orders".* FROM "wing_orders"[0m
+  Rendered wing_orders/index.html.erb within layouts/application (22.3ms)
+DEPRECATION WARNING on line 78 of /Users/teddystanowski/.gem/ruby/2.3.3/gems/foundation-rails-5.5.3.2/vendor/assets/stylesheets/foundation/components/_top-bar.scss: #{} interpolation near operators will be simplified
+in a future version of Sass. To preserve the current behavior, use quotes:
+
+  unquote("#{lower-bound($medium-range)}")
+
+
+Completed 200 OK in 7234ms (Views: 7209.7ms | ActiveRecord: 16.5ms)
+
+
+Started GET "/wing_orders/new" for ::1 at 2017-07-31 17:05:59 -0700
+Processing by WingOrdersController#new as HTML
+  Rendering wing_orders/new.html.erb within layouts/application
+  [1m[36mFlavor Load (0.9ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  Rendered wing_orders/new.html.erb within layouts/application (15.8ms)
+Completed 200 OK in 73ms (Views: 51.7ms | ActiveRecord: 11.6ms)
+
+
+Started GET "/wing_orders/new" for ::1 at 2017-08-02 13:12:17 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WingOrdersController#new as HTML
+  Rendering wing_orders/new.html.erb within layouts/application
+  Rendered layouts/_text_fields.html.erb (0.6ms)
+  Rendered layouts/_state_dropdown.html.erb (0.4ms)
+  Rendered layouts/_quantity_select.html.erb (0.6ms)
+  [1m[36mFlavor Load (1.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  Rendered layouts/_flavors_checkmark.html.erb (12.6ms)
+  Rendered wing_orders/new.html.erb within layouts/application (22.9ms)
+Completed 200 OK in 1072ms (Views: 1031.4ms | ActiveRecord: 15.3ms)
+
+
+Started GET "/wing_orders/new" for ::1 at 2017-08-02 13:16:31 -0700
+Processing by WingOrdersController#new as HTML
+  Rendering wing_orders/new.html.erb within layouts/application
+  Rendered layouts/_text_fields.html.erb (0.3ms)
+  Rendered layouts/_state_dropdown.html.erb (0.6ms)
+  Rendered layouts/_quantity_select.html.erb (0.5ms)
+  [1m[36mFlavor Load (0.5ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  Rendered layouts/_flavors_checkmark.html.erb (1.7ms)
+  Rendered wing_orders/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 66ms (Views: 63.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/wing_orders/new" for ::1 at 2017-08-02 13:17:07 -0700
+Processing by WingOrdersController#new as HTML
+  Rendering wing_orders/new.html.erb within layouts/application
+  Rendered layouts/_text_fields.html.erb (0.4ms)
+  Rendered layouts/_state_dropdown.html.erb (0.4ms)
+  Rendered layouts/_quantity_select.html.erb (0.4ms)
+  [1m[36mFlavor Load (0.9ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  Rendered layouts/_flavors_checkmark.html.erb (1.9ms)
+  Rendered wing_orders/new.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 59ms (Views: 56.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/wing_orders/new" for ::1 at 2017-08-02 13:17:27 -0700
+Processing by WingOrdersController#new as HTML
+  Rendering wing_orders/new.html.erb within layouts/application
+  Rendered layouts/_text_fields.html.erb (0.3ms)
+  Rendered layouts/_state_dropdown.html.erb (0.4ms)
+  Rendered layouts/_quantity_select.html.erb (0.5ms)
+  [1m[36mFlavor Load (0.8ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  Rendered layouts/_flavors_checkmark.html.erb (2.1ms)
+  Rendered wing_orders/new.html.erb within layouts/application (9.4ms)
+Completed 200 OK in 60ms (Views: 57.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/wing_orders/new" for ::1 at 2017-08-02 13:17:55 -0700
+Processing by WingOrdersController#new as HTML
+  Rendering wing_orders/new.html.erb within layouts/application
+  Rendered layouts/_text_fields.html.erb (0.4ms)
+  Rendered layouts/_state_dropdown.html.erb (0.6ms)
+  Rendered layouts/_quantity_select.html.erb (0.6ms)
+  [1m[36mFlavor Load (0.9ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  Rendered layouts/_flavors_checkmark.html.erb (2.4ms)
+  Rendered wing_orders/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 106ms (Views: 102.9ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/wing_orders" for ::1 at 2017-08-02 13:18:43 -0700
+Processing by WingOrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"re2A2FBuqmIjXgawcx7EhY0CFCHhZN+ZZ2KOcbHiNJWWgvGjT5wuMPQLSeFBJN3eXnJhbsvqeFY/AdDOzFNJMw==", "wing_order"=>{"customer_name"=>"Teddy Stanowski", "city"=>"Las Vegas", "state"=>"MA", "quantity"=>"25", "ranch_dressing"=>"0", "flavor_ids"=>["2", "3", ""]}, "commit"=>"Place Order"}
+Unpermitted parameter: flavor_ids
+  [1m[36mFlavor Load (4.3ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" IN (2, 3, NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "wing_orders" ("customer_name", "city", "state", "quantity") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["customer_name", "Teddy Stanowski"], ["city", "Las Vegas"], ["state", "MA"], ["quantity", 25]]
+  [1m[35mSQL (14.9ms)[0m  [1m[32mINSERT INTO "order_flavors" ("wing_order_id", "flavor_id") VALUES ($1, $2) RETURNING "id"[0m  [["wing_order_id", 1], ["flavor_id", 2]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "order_flavors" ("wing_order_id", "flavor_id") VALUES ($1, $2) RETURNING "id"[0m  [["wing_order_id", 1], ["flavor_id", 3]]
+  [1m[35m (19.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/wing_orders
+Completed 302 Found in 128ms (ActiveRecord: 54.3ms)
+
+
+Started GET "/wing_orders" for ::1 at 2017-08-02 13:18:43 -0700
+Processing by WingOrdersController#index as HTML
+  Rendering wing_orders/index.html.erb within layouts/application
+  [1m[36mWingOrder Load (0.7ms)[0m  [1m[34mSELECT "wing_orders".* FROM "wing_orders"[0m
+  [1m[36mFlavor Load (0.9ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" INNER JOIN "order_flavors" ON "flavors"."id" = "order_flavors"."flavor_id" WHERE "order_flavors"."wing_order_id" = $1[0m  [["wing_order_id", 1]]
+  Rendered wing_orders/index.html.erb within layouts/application (20.6ms)
+Completed 200 OK in 82ms (Views: 78.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/wing_orders/new" for ::1 at 2017-08-02 13:22:26 -0700
+Processing by WingOrdersController#new as HTML
+  Rendering wing_orders/new.html.erb within layouts/application
+  Rendered layouts/_text_fields.html.erb (0.3ms)
+  Rendered layouts/_state_dropdown.html.erb (0.4ms)
+  Rendered layouts/_quantity_select.html.erb (0.4ms)
+  [1m[36mFlavor Load (0.5ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  Rendered layouts/_flavors_checkmark.html.erb (1.5ms)
+  Rendered wing_orders/new.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 51ms (Views: 49.3ms | ActiveRecord: 0.5ms)
+
+

@@ -1,0 +1,257 @@
+  [1m[35m (39.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (44.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4651063373634777225);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCampers (20151215041057)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateCampers < ActiveRecord::Migration[4.2] (called from load at /Users/teddystanowski/.gem/ruby/2.3.3/bin/rake:22)
+  [1m[35m (45.1ms)[0m  [1m[35mCREATE TABLE "campers" ("id" serial primary key, "name" character varying NOT NULL, "campsite_id" integer, "created_at" timestamp, "updated_at" timestamp)[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20151215041057"]]
+  [1m[35m (40.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCampsite (20151215041119)
+  [1m[35m (39.5ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateCampsite < ActiveRecord::Migration[4.2] (called from load at /Users/teddystanowski/.gem/ruby/2.3.3/bin/rake:22)
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "campsites" ("id" serial primary key, "name" character varying, "created_at" timestamp, "updated_at" timestamp)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20151215041119"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSupplies (20151215041127)
+  [1m[35m (40.5ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateSupplies < ActiveRecord::Migration[4.2] (called from load at /Users/teddystanowski/.gem/ruby/2.3.3/bin/rake:22)
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "supplies" ("id" serial primary key, "name" character varying, "camper_id" integer, "created_at" timestamp, "updated_at" timestamp)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20151215041127"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (34.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-07-31 17:50:03 UTC], ["updated_at", 2017-07-31 17:50:03 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4651063373634777225)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (40.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'campers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'campsites'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'supplies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "campsites" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Alpha"], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (40.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campsites" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Beta"], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campsites" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Gamma"], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campsites" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Delta"], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Rovaira"], ["campsite_id", 1], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (40.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jorge"], ["campsite_id", 1], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Brian"], ["campsite_id", 1], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jesse"], ["campsite_id", 2], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Maribeth"], ["campsite_id", 2], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kelly"], ["campsite_id", 2], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "David"], ["campsite_id", 3], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Phillip"], ["campsite_id", 3], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "campers" ("name", "campsite_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kevin"], ["campsite_id", 3], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Eggs"], ["camper_id", 1], ["created_at", 2017-07-31 17:50:10 UTC], ["updated_at", 2017-07-31 17:50:10 UTC]]
+  [1m[35m (40.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bacon"], ["camper_id", 8], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Plates"], ["camper_id", 7], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Blankets"], ["camper_id", 4], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Sleeping Bags"], ["camper_id", 2], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Cups"], ["camper_id", 3], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Machete"], ["camper_id", 5], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "trash bags"], ["camper_id", 6], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "compass"], ["camper_id", 6], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Fire logs"], ["camper_id", 8], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "supplies" ("name", "camper_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "pocket knife"], ["camper_id", 1], ["created_at", 2017-07-31 17:50:11 UTC], ["updated_at", 2017-07-31 17:50:11 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2017-07-31 11:52:26 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (51.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb (10.8ms)
+Completed 200 OK in 38ms (Views: 28.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/campsites" for ::1 at 2017-07-31 11:52:51 -0700
+Processing by CampsitesController#index as HTML
+  Rendering campsites/index.html.erb within layouts/application
+  [1m[36mCampsite Load (0.9ms)[0m  [1m[34mSELECT "campsites".* FROM "campsites"[0m
+  Rendered campsites/index.html.erb within layouts/application (257.2ms)
+Completed 200 OK in 906ms (Views: 859.2ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/campsites/1" for ::1 at 2017-07-31 11:52:57 -0700
+Processing by CampsitesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCampsite Load (0.5ms)[0m  [1m[34mSELECT  "campsites".* FROM "campsites" WHERE "campsites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering campsites/show.html.erb within layouts/application
+  Rendered campsites/show.html.erb within layouts/application (32.0ms)
+Completed 500 Internal Server Error in 89ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Campsite:0x007f844aa44a68>):
+    1: <% @campsite.each do |info| %>
+    2:   <%= info %>
+    3: <% end %>
+  
+app/views/campsites/show.html.erb:1:in `_app_views_campsites_show_html_erb__950704625816042269_70103082334740'
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.5ms)
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (13.1ms)
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (95.6ms)
+Started GET "/campsites/1" for ::1 at 2017-07-31 11:54:06 -0700
+Processing by CampsitesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCampsite Load (1.1ms)[0m  [1m[34mSELECT  "campsites".* FROM "campsites" WHERE "campsites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering campsites/show.html.erb within layouts/application
+  Rendered campsites/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 15ms (Views: 12.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2017-08-06 11:05:29 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (41.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb (4.7ms)
+Completed 200 OK in 35ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/campsites" for ::1 at 2017-08-06 11:05:50 -0700
+Processing by CampsitesController#index as HTML
+  Rendering campsites/index.html.erb within layouts/application
+  [1m[36mCampsite Load (0.8ms)[0m  [1m[34mSELECT "campsites".* FROM "campsites"[0m
+  Rendered campsites/index.html.erb within layouts/application (30.8ms)
+Completed 200 OK in 1269ms (Views: 1152.1ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/campsites/1" for ::1 at 2017-08-06 11:05:55 -0700
+Processing by CampsitesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCampsite Load (41.2ms)[0m  [1m[34mSELECT  "campsites".* FROM "campsites" WHERE "campsites"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 143ms (ActiveRecord: 81.7ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Campsite with 'id'=):
+  
+app/controllers/campsites_controller.rb:10:in `show'
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.9ms)
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (69.2ms)
+Started GET "/campsites/1" for ::1 at 2017-08-06 11:11:54 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CampsitesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCampsite Load (0.5ms)[0m  [1m[34mSELECT  "campsites".* FROM "campsites" WHERE "campsites"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 17ms (ActiveRecord: 6.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Campsite with 'id'=):
+  
+app/controllers/campsites_controller.rb:10:in `show'
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.3ms)
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendering /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (10.6ms)
+  Rendered /Users/teddystanowski/.gem/ruby/2.3.3/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (79.6ms)
+Started GET "/campsites" for ::1 at 2017-08-06 11:12:00 -0700
+Processing by CampsitesController#index as HTML
+  Rendering campsites/index.html.erb within layouts/application
+  [1m[36mCampsite Load (0.4ms)[0m  [1m[34mSELECT "campsites".* FROM "campsites"[0m
+  Rendered campsites/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 165ms (Views: 162.8ms | ActiveRecord: 0.4ms)
+
+
